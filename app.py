@@ -169,7 +169,5 @@ if st.button("Lihat Hasil Prediksi"):
         st.stop()
 
 
-data = scaler.transform(data)  # apply langsung ke seluruh data
-
 
 
