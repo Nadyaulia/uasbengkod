@@ -154,18 +154,20 @@ if st.button("Lihat Hasil Prediksi"):
         st.stop()
 
     # Lakukan prediksi
+      # Lakukan prediksi
     try:
         prediction = model.predict(processed_data)[0]
+        
+        # Load LabelEncoder untuk mendekode hasil prediksi
+        label_encoder = joblib.load("label_encoder.pkl")
+        result = label_encoder.inverse_transform([prediction])[0]
+
+        # Tampilkan hasil
+        st.success(f"Prediksi Kategori Obesitas: {result}")
     except Exception as e:
         st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}")
         st.stop()
 
-label_encoder = joblib.load("label_encoder.pkl")
-result = label_encoder.inverse_transform([prediction])[0]
-
-
-    # Tampilkan hasil
-    st.success(f"Prediksi Kategori Obesitas: {result}")
 
 
 
