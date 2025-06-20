@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 @st.cache_resource
 def load_model_and_scaler():
     try:
-        saved = joblib.load("obesity_model.pkl")
+        saved = joblib.load("obesitas_model.pkl")
         if isinstance(saved, dict):
             model = saved.get("model")
             scaler = saved.get("scaler")
