@@ -160,17 +160,9 @@ if st.button("Lihat Hasil Prediksi"):
         st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}")
         st.stop()
 
-    # Decode hasil prediksi
-    categories = {
-        0: "Underweight",
-        1: "Normal Weight",
-        2: "Overweight Level I",
-        3: "Overweight Level II",
-        4: "Obesity Type I",
-        5: "Obesity Type II",
-        6: "Obesity Type III"
-    }
-    result = categories.get(prediction, "Tidak Diketahui")
+label_encoder = joblib.load("label_encoder.pkl")
+result = label_encoder.inverse_transform([prediction])[0]
+
 
     # Tampilkan hasil
     st.success(f"Prediksi Kategori Obesitas: {result}")
