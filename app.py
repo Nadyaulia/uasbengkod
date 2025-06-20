@@ -160,6 +160,11 @@ if st.button("Lihat Hasil Prediksi"):
         st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}")
         st.stop()
 
+    # Di bawah baris prediction = model.predict(...), tambahkan:
+proba = model.predict_proba(processed_data)[0]
+st.write("Probabilitas untuk setiap kategori:")
+st.write({k: round(v * 100, 2) for k, v in zip(categories.values(), proba)})
+
     # Decode hasil prediksi
     categories = {
         0: "Underweight",
@@ -176,8 +181,5 @@ if st.button("Lihat Hasil Prediksi"):
     st.success(f"Prediksi Kategori Obesitas: {result}")
 
 
-# Di bawah baris prediction = model.predict(...), tambahkan:
-proba = model.predict_proba(processed_data)[0]
-st.write("Probabilitas untuk setiap kategori:")
-st.write({k: round(v * 100, 2) for k, v in zip(categories.values(), proba)})
+
 
