@@ -174,3 +174,10 @@ if st.button("Lihat Hasil Prediksi"):
 
     # Tampilkan hasil
     st.success(f"Prediksi Kategori Obesitas: {result}")
+
+
+# Di bawah baris prediction = model.predict(...), tambahkan:
+proba = model.predict_proba(processed_data)[0]
+st.write("Probabilitas untuk setiap kategori:")
+st.write({k: round(v * 100, 2) for k, v in zip(categories.values(), proba)})
+
